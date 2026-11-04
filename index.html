@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POWER STAGE 4択クイズ 第4回（99〜132）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:         #fff9f2;
+    --bg2:        #ffffff;
+    --bg3:        #fff2df;
+    --border:     #edcba9;
+    --accent:     #c65d13;
+    --accent2:    #e17b25;
+    --text:       #322518;
+    --text2:      #68503c;
+    --text3:      #947e6b;
+    --correct:    #0a7c45;
+    --correct-bg: #d6f5e8;
+    --wrong:      #b91c1c;
+    --wrong-bg:   #fde8e8;
+    --gold:       #d97706;
+    --radius:     10px;
+    --shadow:     0 2px 14px rgba(174,87,18,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    min-height: 100vh; line-height: 1.7;
+  }
+
+  /* ── PASSWORD ── */
+  #pw-screen {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 100vh; padding: 2rem; gap: 1.5rem;
+    background: linear-gradient(140deg, #fff0dc 0%, #fff9f2 100%);
+  }
+  .pw-title {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    font-size: clamp(1.3rem, 4vw, 1.9rem);
+    color: var(--accent); letter-spacing: 0.04em; text-align: center;
+  }
+  .pw-unit {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.8rem;
+    color: var(--text3); text-align: center;
+  }
+  .pw-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; width: 100%; max-width: 360px;
+    display: flex; flex-direction: column; gap: 1rem; box-shadow: var(--shadow);
+  }
+  .pw-box label {
+    font-size: 0.74rem; color: var(--text3);
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .pw-box input {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.75rem 1rem; color: var(--text);
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 1rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .pw-box input:focus { border-color: var(--accent); }
+  .pw-error {
+    color: var(--wrong); font-size: 0.8rem;
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; min-height: 1.2em; text-align: center;
+  }
+  .btn-login {
+    background: linear-gradient(135deg, var(--accent), #ee933f);
+    color: #fff; border: none; border-radius: 8px; padding: 0.75rem 1.5rem;
+    font-size: 0.95rem; font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-weight: 500;
+    cursor: pointer; transition: opacity 0.2s, transform 0.1s; width: 100%;
+    box-shadow: 0 2px 8px rgba(174,87,18,0.25);
+  }
+  .btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-login:active { transform: translateY(0); }
+
+  /* ── MAIN APP ── */
+  #app { display: none; }
+
+  /* ── SET SCREEN ── */
+  #set-screen {
+    max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem;
+  }
+
+  .set-header {
+    text-align: center; margin-bottom: 2rem;
+    padding-bottom: 1.5rem; border-bottom: 2px solid var(--border);
+  }
+  .set-header h1 {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--accent); margin-bottom: 0.3rem;
+  }
+  .set-header p { color: var(--text3); font-size: 0.78rem; font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; }
+
+  /* Progress dots */
+  .dot-row {
+    display: flex; gap: 0.5rem; justify-content: center;
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--border); border: 2px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .dot.done    { background: var(--accent);  border-color: var(--accent); }
+  .dot.current { background: var(--accent2); border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(225,123,37,0.2); }
+
+  /* Progress bar */
+  .progress-wrap { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .progress-bar  { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 3px; transition: width 0.4s ease; }
+  .progress-label { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--text3); white-space: nowrap; }
+
+  /* Question card */
+  .q-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    margin-bottom: 1.25rem; box-shadow: var(--shadow);
+  }
+  .q-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .q-num {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.78rem;
+    color: var(--accent); font-weight: 600;
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem; border-radius: 4px;
+  }
+  .q-score-badge {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.75rem; color: var(--text3);
+  }
+
+  .q-en {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: clamp(1rem, 2.5vw, 1.12rem);
+    line-height: 1.9; color: var(--text); margin-bottom: 0.75rem;
+  }
+  .q-blank {
+    display: inline-block; min-width: 5rem;
+    border-bottom: 2px solid var(--accent2);
+    text-align: center; color: var(--accent2);
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.9rem;
+    vertical-align: baseline; margin: 0 0.15rem; padding: 0 0.3rem;
+  }
+  .q-blank.filled-correct { color: var(--correct); border-color: var(--correct); font-weight: 600; }
+  .q-blank.filled-wrong   { color: var(--wrong);   border-color: var(--wrong);   font-weight: 600; }
+
+  .q-ja {
+    font-size: 0.85rem; color: var(--text2);
+    background: var(--bg3); border-radius: 6px; border: 1px solid var(--border);
+    padding: 0.55rem 0.85rem; margin-bottom: 1.1rem;
+    line-height: 1.7;
+  }
+
+  /* Choice buttons */
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+  @media (max-width: 480px) { .choices { grid-template-columns: 1fr; } }
+
+  .choice-btn {
+    background: var(--bg3); border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 0.65rem 0.9rem; color: var(--text); font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    font-size: 0.88rem; text-align: left; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5; width: 100%;
+  }
+  .choice-btn:hover:not(:disabled) { background: #ffe8cb; border-color: var(--accent); transform: translateY(-1px); }
+  .choice-btn:active:not(:disabled) { transform: translateY(0); }
+  .choice-btn.correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); font-weight: 500; }
+  .choice-btn.wrong   { background: var(--wrong-bg);   border-color: var(--wrong);   color: var(--wrong); }
+  .choice-btn:disabled { cursor: default; }
+  .c-label {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.78rem;
+    color: var(--text3); flex-shrink: 0; padding-top: 0.05rem; min-width: 1.4rem;
+  }
+  .choice-btn.correct .c-label, .choice-btn.wrong .c-label { color: inherit; opacity: 0.7; }
+
+  /* Explanation panel */
+  .exp-panel {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.2rem;
+    margin-bottom: 1.25rem; display: none; box-shadow: var(--shadow);
+  }
+  .exp-panel.show { display: block; }
+  .exp-tag {
+    display: inline-block; font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.72rem;
+    color: var(--accent2); background: #fff0d9; border: 1px solid #f1c895;
+    border-radius: 4px; padding: 0.1rem 0.5rem; margin-bottom: 0.6rem; letter-spacing: 0.06em;
+  }
+  .exp-text { font-size: 0.88rem; color: var(--text2); line-height: 1.85; }
+  .exp-text strong { color: var(--text); font-weight: 500; }
+
+  /* Result judgment line */
+  .result-line {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 0.75rem; font-size: 0.9rem; font-weight: 500;
+  }
+  .result-line.ok  { color: var(--correct); }
+  .result-line.bad { color: var(--wrong); }
+
+  /* Nav */
+  .nav-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .btn-next {
+    background: linear-gradient(135deg, var(--accent), #ee933f);
+    color: #fff; border: none; border-radius: 8px;
+    padding: 0.7rem 2rem; font-size: 0.92rem; font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    font-weight: 500; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(174,87,18,0.25);
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .btn-next:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-next:active { transform: translateY(0); }
+
+  /* ── SET RESULT ── */
+  #set-result-screen { display: none; max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+  .sr-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem;
+    margin-bottom: 1.25rem; box-shadow: var(--shadow); text-align: center;
+  }
+  .sr-title { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 1.1rem; color: var(--text2); margin-bottom: 0.5rem; }
+  .sr-score { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--accent); line-height: 1.1; }
+  .sr-out   { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.78rem; color: var(--text3); margin-bottom: 0.75rem; }
+  .sr-msg   { font-size: 0.92rem; color: var(--text2); line-height: 1.8; }
+
+  .mistakes-title {
+    font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.72rem;
+    color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.85rem;
+  }
+  .mistake-item {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.85rem 1rem; margin-bottom: 0.5rem; text-align: left;
+  }
+  .mi-num    { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.72rem; color: var(--accent2); margin-bottom: 0.3rem; }
+  .mi-answer { font-size: 0.88rem; color: var(--correct); font-weight: 500; margin-bottom: 0.25rem; }
+  .mi-exp    { font-size: 0.82rem; color: var(--text2); line-height: 1.7; }
+
+  .btn-row { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 0.75rem; }
+  .btn-sub {
+    background: var(--bg2); border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 0.65rem 1.5rem; color: var(--text2); font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+    font-size: 0.88rem; cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-sub:hover { background: var(--bg3); border-color: var(--accent); }
+
+  /* ── FINAL RESULT ── */
+  #final-screen {
+    display: none; max-width: 760px; margin: 0 auto;
+    padding: 2rem 1rem 4rem; text-align: center;
+  }
+  .final-label { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 1.2rem; color: var(--text2); margin-bottom: 0.5rem; }
+  .final-score { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: clamp(3rem, 10vw, 5rem); color: var(--accent); line-height: 1; margin-bottom: 0.25rem; }
+  .final-out   { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.8rem; color: var(--text3); margin-bottom: 1.5rem; }
+  .final-msg   {
+    font-size: 0.98rem; color: var(--text2); max-width: 420px; margin: 0 auto 2rem;
+    line-height: 1.9; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow);
+  }
+
+  /* Animations */
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .fade-in { animation: fadeIn 0.3s ease forwards; }
+  @keyframes pop { from{opacity:0;transform:scale(0.96)} to{opacity:1;transform:scale(1)} }
+  .pop { animation: pop 0.18s ease forwards; }
+
+  .q-en .q-blank { min-width: 5.5rem; }
+  .choice-btn { font-family: 'Yu Kyokasho', 'YuKyokasho', 'UD Digi Kyokasho N-R', 'UD Digi Kyokasho NP-R', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; font-size: 0.97rem; align-items: center; overflow-wrap:anywhere; }
+  .choices { grid-template-columns: 1fr; }
+  .exp-section-title {font-size:0.73rem;letter-spacing:.05em;color:var(--accent2);font-weight:600;margin:.9rem 0 .25rem;}
+  .exp-example {font-family:'Lora',serif;font-size:1rem;line-height:1.65;}
+  .exp-jp {font-size:.84rem;color:var(--text2);line-height:1.7;}
+  .exp-answer {color:var(--correct);font-weight:600;font-family:'Lora',serif;font-size:1.05rem;}
+  .q-instruction {color:var(--text3);font-size:.8rem;margin-bottom:.75rem;}
+  .mi-ex {font-size:.8rem;color:var(--text2);margin-top:.3rem;}
+  .set-hint {text-align:center;color:var(--text3);font-size:.79rem;margin-bottom:1rem;}
+  .footer-note {color:var(--text3);font-size:.7rem;text-align:center;margin-top:1rem;}
+</style></head><body>
+<div id="pw-screen"><div class="pw-title">POWER STAGE 4択クイズ</div><div class="pw-unit">// 第4回 · 並び替え語順4択 · 問題 99〜132</div>
+<div class="pw-box"><label>Password</label><input type="password" id="pw-input" placeholder="パスワードを入力" autocomplete="off"><div class="pw-error" id="pw-error"></div><button class="btn-login" id="btn-login">ログイン</button></div></div>
+<div id="app"><div id="set-screen"><div class="set-header"><h1>POWER STAGE 4択クイズ — 第4回</h1><p id="set-label"></p></div><div class="dot-row" id="dot-row"></div><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div><div class="progress-label" id="prog-label"></div></div><div id="q-area"></div></div>
+<div id="set-result-screen"><div class="sr-card"><div class="sr-title" id="sr-title"></div><div class="sr-score" id="sr-score"></div><div class="sr-out" id="sr-out"></div><div class="sr-msg" id="sr-msg"></div></div><div id="mistakes-wrap" style="display:none"><div class="mistakes-title">間違えた問題の確認</div><div id="mistakes-list"></div></div><div class="btn-row"><button class="btn-sub" id="btn-retry-set">このセットをやり直す</button><button class="btn-next" id="btn-next-set">次のセットへ →</button></div></div>
+<div id="final-screen"><div class="final-label">総合結果 · 第4回</div><div class="final-score" id="final-score"></div><div class="final-out" id="final-out">正解数</div><div class="final-msg" id="final-msg"></div><button class="btn-login" id="btn-restart" style="max-width:240px;margin:0 auto">最初からやり直す</button></div></div>
+<script>
+const ALL_QUESTIONS = [{"num": 99, "before": "", "after": " any changes in your contact information, please let us know as soon as possible.", "ja": "あなたの連絡先に変更があった場合は，できるだけ早くご連絡ください。", "choices": ["in event the of", "in of event the", "in the event of", "the in event of"], "answer": "In the event of", "exp": "in the event of ～ は「万一～が起きた場合は」。event は「起こること」。of の後ろには any changes という名詞が来る。if there are any changes と言い換えると条件だとわかりやすい。", "example": "In the event of an earthquake, use the stairs.", "exja": "地震の場合は階段を使ってください。", "note": ""}, {"num": 100, "before": "A: Apparently, Melissa got dumped by her boyfriend. B: From what I heard, it was ", "after": ". It was her boyfriend who got dumped.", "ja": "A:どうやら，メリッサは彼女のボーイフレンドに捨てられたようだね。B:私が聞いたところでは，その逆よ。捨てられたのは彼女のボーイフレンドの方だわ。", "choices": ["way other the round", "other the way round", "the other way round", "the other round way"], "answer": "the other way round", "exp": "the other way round は「逆に・反対の順で」。聞いた話では「彼女が振られた」ではなく「彼氏の方が振られた」ので、立場が逆転している。round はここでは方向の入れ替わりを表す一部。", "example": "I thought she helped him, but it was the other way round.", "exja": "彼女が彼を助けたと思ったが、実際は逆だった。", "note": ""}, {"num": 101, "before": "If you need to talk to Peter, now might be a good time because he is not doing anything ", "after": ".", "ja": "ピーターと話をする必要があるのなら，今がよい時期かもしれない，彼は読書しかしていないから。", "choices": ["other reading than a book", "other than a reading book", "other than reading book a", "other than reading a book"], "answer": "other than reading a book", "exp": "other than ～ は「～以外に」。not doing anything が「何もしていない」で、other than reading a book はその例外を表す。than の後ろは reading のような -ing形が使える。つまり「本を読む以外は何もしていない」。", "example": "I have no choice other than to wait.", "exja": "私には待つ以外に選択肢がない。", "note": ""}, {"num": 102, "before": "", "after": ", I could not get a satisfactory grade in the subject.", "ja": "努力したにもかかわらず，その教科では満足のいく成績を収められなかった。", "choices": ["my all for effort", "for my all effort", "all for my effort", "for all my effort"], "answer": "For all my effort", "exp": "for all ～ は「～にもかかわらず」。for を「～のために」と決めつけず、後半の could not（成功しなかった）との対比を見る。努力したのに満足できなかったので、For all my effort が逆接の意味になる。", "example": "For all his wealth, he isn't happy.", "exja": "裕福であるにもかかわらず、彼は幸せではない。", "note": ""}, {"num": 103, "before": "", "after": " written work, you will be required to submit a long essay at the end of the semester.", "ja": "通常の作文とは別に，みなさんは学期末に長文の小論文を提出することが義務づけられています。", "choices": ["apart from regular the", "from apart the regular", "apart from the regular", "apart the from regular"], "answer": "Apart from the regular", "exp": "apart from ～ は「～とは別に・～に加えて」。通常の課題以外にも長い作文を提出する必要がある、という追加の意味。apart は「離れている」で、regular written work と long essay を別項目として区別する。", "example": "Apart from English, she studies German.", "exja": "彼女は英語のほかにドイツ語を学んでいる。", "note": ""}, {"num": 104, "before": "She was absent from class ", "after": " her leg.", "ja": "彼女は足に痛みがあるという理由で授業を欠席した。", "choices": ["due to a in pain", "due to a pain in", "due to in pain a", "due a to pain in"], "answer": "due to a pain in", "exp": "due to ～ は「～が原因で」。to の後ろには a pain in her leg という名詞句が来る。pain は「痛み」、in her leg は「脚のどこに痛みがあるか」。欠席の理由を示すので due to a pain in her leg とする。", "example": "The flight was canceled due to thick fog.", "exja": "濃霧のため飛行機は欠航した。", "note": ""}, {"num": 105, "before": "Those who ", "after": " sales taxes were the minority at that time.", "ja": "当時，売上税の増税に賛成する人は少数だった。", "choices": ["were in favor of higher", "were in of favor higher", "were favor in of higher", "were in favor higher of"], "answer": "were in favor of higher", "exp": "in favor of ～ は「～に賛成して」。favor は「支持・好意」で、ある提案の側に立つイメージ。higher sales taxes は「より高い売上税」なので、それに賛成する人を were in favor of higher sales taxes で表す。", "example": "Most students are in favor of the new rule.", "exja": "ほとんどの生徒は新しい規則に賛成している。", "note": ""}, {"num": 106, "before": "All the faculty members ", "after": " the meeting.", "ja": "すべての教職員が，その会議に時間通りに到着した。", "choices": ["arrived on time for", "arrived time on for", "on arrived time for", "arrived for time on"], "answer": "arrived on time for", "exp": "on time は「予定時刻どおりに」、in time は「間に合って」。会議に予定時刻どおり到着したので on time が適切。for the meeting は「何の予定に対してか」を示す。arrived on time for ... の形にする。", "example": "Everyone arrived on time for the meeting.", "exja": "全員が会議に時間どおりに到着した。", "note": ""}, {"num": 107, "before": "", "after": " before seven on weekdays.", "ja": "普段は，私は平日は7時前に起きます。", "choices": ["a as rule, I get up", "as rule, a I get up", "as a rule, I get up", "as a rule, I up get"], "answer": "As a rule, I get up", "exp": "as a rule は「原則として・普段は」。例外があるかもしれないが通常の習慣を述べる。文頭の As a rule, の後に I get up ... を置くと、「いつも必ず」ではなく「普段は」という意味になる。", "example": "As a rule, I don't use my phone during meals.", "exja": "ふだん私は食事中に携帯電話を使わない。", "note": ""}, {"num": 108, "before": "I would recommend that you watch CNN news in English ", "after": " your listening.", "ja": "あなたの聴解力を強化するためにCNNニュースを英語で見ることをお勧めします。", "choices": ["with a view to strengthening", "with to view a strengthening", "a with view to strengthening", "with view a to strengthening"], "answer": "with a view to strengthening", "exp": "with a view to ～ は「～する目的で」。ここでの to は前置詞なので後ろは動詞原形 strengthen ではなく strengthening。with a view to strengthening your listening で「リスニング力を伸ばすために」となる。", "example": "He joined the club with a view to improving his English.", "exja": "彼は英語を上達させる目的でそのクラブに入った。", "note": ""}, {"num": 109, "before": "", "after": " and chocolates, I bought my wife a ring for her birthday.", "ja": "妻の誕生日用に，花とチョコレートに加えて指輪も買った。", "choices": ["in addition to flowers", "to addition in flowers", "in to addition flowers", "in addition flowers to"], "answer": "In addition to flowers", "exp": "in addition to ～ は「～に加えて」。addition は「追加」で、to の後ろには flowers and chocolates という名詞を置く。もともとの贈り物にさらに ring を買ったという追加関係がはっきりする。", "example": "In addition to English, I am learning Spanish.", "exja": "私は英語に加えてスペイン語も学んでいる。", "note": ""}, {"num": 110, "before": "The mind can affect the body. For ", "after": " healthy.", "ja": "精神が肉体に影響することがある。例えば，幸せな人々は健康である傾向がある。", "choices": ["instance, happy people be to tend", "instance, happy people to tend be", "instance, happy people tend be to", "instance, happy people tend to be"], "answer": "instance, happy people tend to be", "exp": "for instance は「例えば」。心と体の関係という一般的な説明をした後、happy people という具体例を挙げている。tend to do は「～する傾向がある」なので、people tend to be healthy の形になる。", "example": "For instance, young children tend to learn songs quickly.", "exja": "例えば、幼い子どもは歌をすぐに覚える傾向がある。", "note": ""}, {"num": 111, "before": "We arrived at ", "after": " the train.", "ja": "私たちは電車にぎりぎり間に合うように駅に到着した。", "choices": ["the station just time in for", "the station in just time for", "the station just in time for", "the station just for time in"], "answer": "the station just in time for", "exp": "just in time は「ぎりぎり間に合って」。in time は期限・出発に間に合うこと、just は「ちょうど・ぎりぎり」を強める。列車に間に合ったと言いたいので just in time for the train。on time（定刻どおり）とは区別する。", "example": "We reached the cinema just in time for the movie.", "exja": "私たちは映画にぎりぎり間に合うように映画館に着いた。", "note": ""}, {"num": 112, "before": "The crowd proceeded to overturn cars ", "after": ".", "ja": "群衆は車をひっくり返し，火をつけ始めた。", "choices": ["and set on them fire", "set and them on fire", "and set them fire on", "and set them on fire"], "answer": "and set them on fire", "exp": "set A on fire は「Aに火をつける」。set の目的語を先に置き、その後に on fire を付ける。and は overturn cars と set them on fire という二つの行動をつなぐ。them は前の cars を指す。", "example": "Someone set the empty building on fire.", "exja": "誰かが空きビルに火をつけた。", "note": ""}, {"num": 113, "before": "My cousin ", "after": " nature, although she is a good sales person.", "ja": "私のいとこは優秀な営業部員だが，もともと穏やかな人だ。", "choices": ["is quiet a person by", "a is quiet person by", "is a quiet by person", "is a quiet person by"], "answer": "is a quiet person by", "exp": "by nature は「生まれつき・もともとの性格として」。nature を「自然環境」だけでなく「性質」と考える。a quiet person が人物の性格、by nature がそれが元来のものだと説明する。", "example": "She is shy by nature.", "exja": "彼女は生まれつき内気だ。", "note": ""}, {"num": 114, "before": "“In a", "after": ". a voyage,” he said", "ja": "ある意味，人生は航海のようなものだ，と彼は言った。", "choices": ["senens, life like is", "senens, is life like", "senens, life is like", "is life senens, like"], "answer": "senens, life is like", "exp": "in a sense は「ある意味では」。sense は「意味・観点」で、人生を航海にたとえた比喩が完全に同じというわけではないことを示す。life is like a voyage は「人生は航海のようだ」。原本の senens は sense の誤植と考えられる。", "example": "In a sense, making mistakes helps us learn.", "exja": "ある意味では、間違えることは学びに役立つ。", "note": "原本では「senens」と印字（解答欄も同様）。文意から「sense」の誤植と判断。完成英文は修正表記。"}, {"num": 115, "before": "He had nothing to say with ", "after": " his grandparents emigrated from Ireland.", "ja": "祖父母がアイルランドから移住してきた理由に関して彼が話すことは何もない。", "choices": ["regard to the reason why", "regard the to reason why", "regard to reason the why", "to regard the reason why"], "answer": "regard to the reason why", "exp": "with regard to ～ は「～に関して」。regard は「考慮・関係」という意味で、前置詞 to の後ろに話題を置く。the reason why ... が「なぜ～したかという理由」という名詞のまとまりになる。", "example": "I have a question with regard to the schedule.", "exja": "日程に関して質問があります。", "note": ""}, {"num": 116, "before": "I am scared of riding a bicycle, ", "after": ".", "ja": "私は馬に乗ることは言うまでもなく，自転車に乗るのも怖い。", "choices": ["let a alone horse", "alone let a horse", "let alone horse a", "let alone a horse"], "answer": "let alone a horse", "exp": "let alone ～ は「～は言うまでもなく」。先に述べた簡単なことさえできないなら、もっと難しいことはなおさら、という比較。自転車でも怖いなら馬はもっと怖いので let alone a horse と続く。", "example": "I can't run five kilometers, let alone a marathon.", "exja": "私は5キロも走れない。ましてマラソンなど無理だ。", "note": ""}, {"num": 117, "before": "His novels have fascinated many readers, ", "after": ".", "ja": "彼の小説は，年齢や性別に関係なく多くの読者を魅了してきた。", "choices": ["regardless or age of sex", "regardless age of or sex", "of regardless age or sex", "regardless of age or sex"], "answer": "regardless of age or sex", "exp": "regardless of ～ は「～に関係なく」。regard は「考慮」、-less は「～がない」、of の後ろに判断に影響させない条件を置く。age or sex として「年齢や性別に関係なく」を表す。", "example": "Anyone can join regardless of age.", "exja": "年齢に関係なく誰でも参加できます。", "note": ""}, {"num": 118, "before": "In spite of all the ", "after": ", tobacco companies insisted that nicotine was not harmful to one’s health.", "ja": "それが逆であることを示す多くの科学的証拠があるにもかかわらず，たばこ会社はニコチンは健康に害がないと主張した。", "choices": ["scientific evidence the to contrary", "scientific evidence to contrary the", "scientific evidence to the contrary", "scientific to evidence the contrary"], "answer": "scientific evidence to the contrary", "exp": "to the contrary は「それとは反対の」。evidence to the contrary は、企業の主張（無害）とは逆に有害であることを示す証拠。scientific evidence を先に置き、その証拠の向きを to the contrary で後ろから説明する。", "example": "There is no evidence to the contrary.", "exja": "それに反する証拠はない。", "note": ""}, {"num": 119, "before": "", "after": " in front of the bus stop.", "ja": "突然私の乗る車がバス停の前で止まった。", "choices": ["at all once my car stopped", "all my once at car stopped", "all at my once car stopped", "all at once my car stopped"], "answer": "All at once my car stopped", "exp": "all at once は「突然・一度に」。ここでは車が止まるという思いがけない出来事なので「突然」。文頭の All at once が出来事の起こり方を示し、my car stopped が主語＋動詞になる。", "example": "All at once, everyone began to laugh.", "exja": "突然、全員が笑い始めた。", "note": ""}, {"num": 120, "before": "You will find him in his office ", "after": " in the afternoon.", "ja": "彼は，午後にはたいてい自分のオフィスにいるでしょう。", "choices": ["more than often not", "more not than often", "more often not than", "more often than not"], "answer": "more often than not", "exp": "more often than not は「そうでないときより、そうであるときの方が多い」から「たいてい」。more ～ than ... という比較の形が鍵。午後にはオフィスにいることが多い、と頻度を説明している。", "example": "More often than not, she walks to school.", "exja": "彼女はたいてい歩いて学校へ行く。", "note": ""}, {"num": 121, "before": "", "after": " convenience, our drug store is open 24 hours a day, seven days a week.", "ja": "利便性のため，当ドラッグストアは週7日，24時間開店しております。", "choices": ["the for sake of", "for the sake of", "for sake the of", "for of sake the"], "answer": "For the sake of", "exp": "for the sake of ～ は「～のために」。sake は「利益・目的」で、利便性を重視するという理由を示す。for the sake of convenience とし、なぜ24時間営業なのかを説明する。", "example": "We should save water for the sake of the environment.", "exja": "環境のために水を節約すべきだ。", "note": ""}, {"num": 122, "before": "", "after": ", the chairperson told everybody to settle down.", "ja": "会議が紛糾したとき，議長は全員に対して落ち着くように言った。", "choices": ["the when meeting got out of hand", "when the meeting got out of hand", "when meeting the got out of hand", "when the meeting got of out hand"], "answer": "When the meeting got out of hand", "exp": "get out of hand は「手に負えなくなる」。hand は「手＝コントロール」のイメージで、その範囲から外れると収拾がつかなくなる。meeting が主語なので got out of hand は「会議が紛糾した」という状態の変化。", "example": "The argument quickly got out of hand.", "exja": "口論はたちまち収拾がつかなくなった。", "note": ""}, {"num": 123, "before": "My uncle refused my request; ", "after": " was “no.”", "ja": "おじは，私の頼みを断った。言い換えれば，おじの答えは「だめだ」だった。", "choices": ["in other his words, answer", "other in words, his answer", "in other words, answer his", "in other words, his answer"], "answer": "in other words, his answer", "exp": "in other words は「言い換えると」。先に「頼みを断った」と説明し、後で答えは no だったと言い直している。words は複数形で、文頭に in other words, を置いて別の表現を導く。", "example": "He is bilingual. In other words, he speaks two languages.", "exja": "彼はバイリンガルだ。つまり、二つの言語を話す。", "note": ""}, {"num": 124, "before": "She has her own ", "after": " be brought up.", "ja": "彼女は子どもの育て方について独特な考えを持っている。", "choices": ["as ideas to how children should", "ideas as to how children should", "ideas to as how children should", "ideas as how to children should"], "answer": "ideas as to how children should", "exp": "as to ～ は「～について」。ideas の内容が「どのように子どもを育てるべきか」なので、as to how children should ... と続く。how 以下は疑問文ではなく間接疑問なので、how should children ではなく how children should の語順。", "example": "We disagree as to how the money should be used.", "exja": "私たちはそのお金をどう使うべきかについて意見が異なる。", "note": ""}, {"num": 125, "before": "", "after": ", students had a barbecue in their teacher’s yard.", "ja": "強風にもかかわらず，学生たちは先生の家の中庭でバーベキューパーティーを開いた。", "choices": ["in of spite the strong wind", "in spite of the strong wind", "in spite of strong the wind", "in spite the of strong wind"], "answer": "In spite of the strong wind", "exp": "in spite of ～ は「～にもかかわらず」。spite はここでは逆らうイメージで、悪条件があっても実行したと示す。of の後ろは the strong wind という名詞句。風が強いのにバーベキューをしたという逆接の文脈を見る。", "example": "In spite of the rain, the match continued.", "exja": "雨にもかかわらず試合は続いた。", "note": ""}, {"num": 126, "before": "A nurse usually wears ", "after": ".", "ja": "看護師はたいてい，勤務中は白い制服を着ている。", "choices": ["a white uniform on when duty", "a white uniform when on duty", "white a uniform when on duty", "a white uniform when duty on"], "answer": "a white uniform when on duty", "exp": "on duty は「勤務中」で、duty は「職務」。when on duty は when a nurse is on duty の主語＋be動詞が省略された形と考えられる。wears a white uniform で服装を述べ、when on duty でその時間帯を示す。", "example": "Doctors must wear badges when on duty.", "exja": "医師は勤務中、名札を着用しなければならない。", "note": ""}, {"num": 127, "before": "", "after": ", our sports day will be put off till next Sunday.", "ja": "雨天の場合は運動会は来週の日曜日まで延期されます。", "choices": ["In of case rain", "In case of rain", "In case rain of", "of case In rain"], "answer": "In case of rain", "exp": "in case of ～ は「～の場合には」。case は「場合・事態」、of の後ろには rain という名詞を置く。雨が起きた場合の延期予定なので、In case of rain, と条件を文頭に置く。", "example": "In case of fire, leave the building immediately.", "exja": "火災の場合は直ちに建物から出てください。", "note": ""}, {"num": 128, "before": "Then, ", "after": ", he sold his house and left the country.", "ja": "それから突然，彼は自分の家を売り，国を離れた。", "choices": ["out of the blue", "out the of blue", "of out the blue", "the of out blue"], "answer": "out of the blue", "exp": "out of the blue は「突然・思いがけず」。blue は青空で、そこから突然何かが現れるイメージ。家を売って国外へ去る予想外の行動なのでこの表現を使い、文頭で出来事の意外性を強調する。", "example": "She called me out of the blue yesterday.", "exja": "彼女は昨日、突然電話してきた。", "note": ""}, {"num": 129, "before": "(a) Peter visits his grandmother ", "after": ". (b) Peter doesn’t forget to visit his grandmother every Sunday.", "ja": "（a）ピーターは毎週日曜日，欠かさず祖母を訪ねている。（b）ピーターは毎週日曜日，忘れず祖母を訪ねる。", "choices": ["Sunday every without fail", "every Sunday fail without", "every without Sunday fail", "every Sunday without fail"], "answer": "every Sunday without fail", "exp": "without fail は「欠かさず・必ず」。fail は「失敗すること」で、without は「～なしに」だから「失敗することなく＝毎回必ず」。every Sunday を先に置き、その後に without fail を足して習慣の確実さを強める。", "example": "Please submit the report by Friday without fail.", "exja": "金曜日までに必ずレポートを提出してください。", "note": ""}, {"num": 130, "before": "There ", "after": " I wanted to buy for my parents at the museum shop.", "ja": "そのミュージアムショップには，私の両親のために買いたいものは特に何もなかった。", "choices": ["wasn’t anything particular in", "wasn’t anything in particular", "wasn’t in anything particular", "in anything wasn’t particular"], "answer": "wasn’t anything in particular", "exp": "in particular は「特に・とりわけ」。何か買いたい品があったのではなく、「特に何もなかった」という否定文。wasn't anything in particular で「特にこれといったものはなかった」という意味になる。", "example": "Is there anything in particular you want to see?", "exja": "特に見たいものはありますか。", "note": "設問末尾の parents at the museum shop. は次段組に配置されていたため補完。"}, {"num": 131, "before": "When it comes to arm-wrestling, ", "after": ".", "ja": "腕相撲となると，彼は誰にも負けない。", "choices": ["he is second to none", "he second is to none", "he to second is none", "he is to second none"], "answer": "he is second to none", "exp": "second to none は「誰にも負けない・最高だ」。second は「2番目」、none は「誰もいない」。『誰かの次の2番手にもならない』という発想で「一番」となる。he is second to none として能力を高く評価する。", "example": "Her ability to explain grammar is second to none.", "exja": "彼女の文法説明の能力は誰にも劣らない。", "note": ""}, {"num": 132, "before": "This rice cooker ", "after": " I want. As long as it does its job properly, that’s fine with me.", "ja": "この炊飯器は，だいたい私が望んでいるものです。きちんと機能を果たしてくれさえすれば，それでいいです。", "choices": ["is more less or what", "or more is less what", "is more or less what", "more is or less what"], "answer": "is more or less what", "exp": "more or less は「多かれ少なかれ＝だいたい」。完全に望みどおりではないが、大筋では満足ということ。is more or less what I want では what I want が「私が欲しいもの」という名詞のまとまりになる。", "example": "The work is more or less complete.", "exja": "その仕事はほぼ完成している。", "note": ""}];
+const SETS = Array.from({length:7},(_,i)=>Array.from({length:i===6?4:5},(_,j)=>i*5+j));
+let currentSetIdx=0,currentQIdx=0,setOrder=[],setCorrect=0,totalCorrect=0,setMistakes=[],answered=false;
+const $=id=>document.getElementById(id);
+const escapeHtml=str=>String(str??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle=arr=>{let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function checkPw(){ if($('pw-input').value==='sugihara'){$('pw-screen').style.display='none';$('app').style.display='block';initApp();}else{$('pw-error').textContent='パスワードが正しくありません';$('pw-input').value='';$('pw-input').focus();}}
+$('btn-login').addEventListener('click',checkPw);$('pw-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkPw();});
+function initApp(){currentSetIdx=0;totalCorrect=0;startSet(0);}
+function showOnly(id){['set-screen','set-result-screen','final-screen'].forEach(k=>$(k).style.display=k===id?'block':'none');}
+function startSet(i){currentSetIdx=i;currentQIdx=0;setCorrect=0;setMistakes=[];setOrder=shuffle(SETS[i]);showOnly('set-screen');renderDots();renderQuestion();window.scrollTo(0,0);}
+function renderDots(){$('dot-row').innerHTML=SETS.map((_,i)=>`<div class="dot ${i<currentSetIdx?'done':i===currentSetIdx?'current':''}" aria-label="セット${i+1}"></div>`).join('');}
+function renderQuestion(){answered=false;const q=ALL_QUESTIONS[setOrder[currentQIdx]],size=setOrder.length;
+ $('set-label').textContent=`// Set ${currentSetIdx+1} / ${SETS.length} · 対象 No.${ALL_QUESTIONS[SETS[currentSetIdx][0]].num}〜${ALL_QUESTIONS[SETS[currentSetIdx].at(-1)].num}`;
+ $('prog-fill').style.width=(currentQIdx/size*100)+'%';$('prog-label').textContent=`${currentQIdx} / ${size}`;
+ // Excel's four options preserved verbatim. Shuffle their on-screen order but track text identity.
+ const opts=shuffle(q.choices.map((s,i)=>({s,i}))),area=$('q-area');area.className='fade-in';
+ area.innerHTML=`<div class="q-card"><div class="q-meta"><div class="q-num">No. ${q.num}</div><div class="q-score-badge">このセット ${setCorrect} 正解</div></div>
+ <div class="q-instruction">空所に入る語句の並び順として、正しいものを1つ選びなさい。</div>
+ <div class="q-en" id="q-en">${escapeHtml(q.before)}<span class="q-blank" id="q-blank">（　　　　）</span>${escapeHtml(q.after)}</div>
+ <div class="q-ja">${escapeHtml(q.ja)}</div><div class="choices" id="choices">${opts.map((o,i)=>`<button class="choice-btn" data-choice="${o.i}"><span class="c-label">${'ABCD'[i]}.</span><span>${escapeHtml(o.s)}</span></button>`).join('')}</div></div>
+ <div class="exp-panel" id="exp-panel"><div class="result-line" id="result-line"></div><div class="exp-section-title">正しい並び替え</div><div class="exp-answer">${escapeHtml(q.answer)}</div><div class="exp-section-title">なぜこの語順になる？</div><div class="exp-text">${escapeHtml(q.exp)}</div><div class="exp-section-title">別の例文</div><div class="exp-example">${escapeHtml(q.example)}</div><div class="exp-jp">${escapeHtml(q.exja)}</div>${q.note?`<div class="exp-section-title">補足</div><div class="exp-jp">${escapeHtml(q.note)}</div>`:''}</div>
+ <div class="nav-row" id="nav-row" style="display:none"><button class="btn-next" id="btn-next-q">${currentQIdx+1<size?'次の問題へ →':'セット結果を見る'}</button></div>`;
+ area.querySelectorAll('.choice-btn').forEach(btn=>btn.addEventListener('click',()=>answerQuestion(Number(btn.dataset.choice))));$('btn-next-q').addEventListener('click',nextQ);
+}
+function answerQuestion(choiceIndex){if(answered)return;answered=true;const q=ALL_QUESTIONS[setOrder[currentQIdx]],correctIndex=q.choices.findIndex(x=>x.toLowerCase()===q.answer.toLowerCase()),ok=choiceIndex===correctIndex;
+ document.querySelectorAll('.choice-btn').forEach(btn=>{btn.disabled=true;const i=Number(btn.dataset.choice);if(i===correctIndex)btn.classList.add('correct');else if(i===choiceIndex)btn.classList.add('wrong');});
+ const blank=$('q-blank');blank.textContent=' '+q.answer+' ';blank.classList.add(ok?'filled-correct':'filled-wrong');
+ const r=$('result-line');r.className='result-line '+(ok?'ok':'bad');r.textContent=ok?'✓ 正解！':'✗ 不正解 — 正答を確認しましょう';
+ if(ok){setCorrect++;totalCorrect++;}else setMistakes.push({q,chosen:q.choices[choiceIndex]});
+ $('exp-panel').classList.add('show','pop');$('nav-row').style.display='flex';document.querySelector('.q-score-badge').textContent=`このセット ${setCorrect} 正解`;
+ $('prog-fill').style.width=((currentQIdx+1)/setOrder.length*100)+'%';$('prog-label').textContent=`${currentQIdx+1} / ${setOrder.length}`;
+}
+function nextQ(){currentQIdx++;if(currentQIdx<setOrder.length){renderQuestion();window.scrollTo({top:0,behavior:'smooth'});}else showSetResult();}
+function showSetResult(){showOnly('set-result-screen');$('sr-title').textContent=`Set ${currentSetIdx+1} 結果`;$('sr-score').textContent=String(setCorrect);$('sr-out').textContent=`/ ${setOrder.length} 問`;
+ const p=setCorrect/setOrder.length;$('sr-msg').textContent=p===1?'満点です。次のセットに進みましょう。':p>=.8?'よくできました。間違えた問題を確認しましょう。':p>=.5?'間違えた語順と解説を確認しましょう。':'復習してから、もう一度挑戦しましょう。';
+ $('mistakes-wrap').style.display=setMistakes.length?'block':'none';$('mistakes-list').innerHTML=setMistakes.map(({q,chosen})=>`<div class="mistake-item"><div class="mi-num">No. ${q.num}</div><div style="font-size:.86rem;margin-bottom:.3rem">${escapeHtml(q.before)}（　）${escapeHtml(q.after)}</div><div class="mi-answer">✓ 正答：${escapeHtml(q.answer)}</div><div style="font-size:.82rem;color:var(--wrong)">✗ あなたの解答：${escapeHtml(chosen)}</div><div class="mi-exp">${escapeHtml(q.exp)}</div><div class="mi-ex">例：${escapeHtml(q.example)}<br>${escapeHtml(q.exja)}</div></div>`).join('');
+ $('btn-next-set').textContent=currentSetIdx<SETS.length-1?'次のセットへ →':'総合結果を見る';window.scrollTo(0,0);}
+function retrySet(){totalCorrect-=setCorrect;startSet(currentSetIdx);}
+function nextSet(){if(currentSetIdx+1<SETS.length)startSet(currentSetIdx+1);else showFinal();}
+function showFinal(){showOnly('final-screen');$('final-score').textContent=`${totalCorrect} / ${ALL_QUESTIONS.length}`;
+ const p=totalCorrect/ALL_QUESTIONS.length;$('final-msg').textContent=p===1?'全34問正解です。':p>=.8?'よくできました。間違えた問題を復習しましょう。':p>=.5?'苦手な熟語の語順を復習しましょう。':'解説を読み直し、もう一度挑戦しましょう。';window.scrollTo(0,0);}
+$('btn-retry-set').addEventListener('click',retrySet);$('btn-next-set').addEventListener('click',nextSet);$('btn-restart').addEventListener('click',initApp);
+</script></body></html>
